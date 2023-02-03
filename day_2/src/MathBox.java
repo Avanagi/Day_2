@@ -1,7 +1,15 @@
 import java.util.*;
 
+/**
+ * Инициализация коллекции
+ * @param <T> Параметр, определяющий тип коллекции
+ */
 public class MathBox<T> extends ObjectBox{
 
+    /**
+     * Конструктор по значению
+     * @param vector вектор, элементы которого передаются в коллекцию
+     */
     MathBox(T[] vector) {
 
         super.Object.addAll (Arrays.asList (vector));
@@ -12,6 +20,11 @@ public class MathBox<T> extends ObjectBox{
 
     }
 
+    /**
+     * метод, проверяющий наличие повторов
+     * @param vector вектор, который проверяется
+     * @return возвращет результат проверки
+     */
     public boolean checkRepeats(Object[] vector) {
         boolean flag = true;
 
@@ -27,6 +40,9 @@ public class MathBox<T> extends ObjectBox{
         return flag;
     }
 
+    /**
+     * @return возвращает сумму элементов коллекции
+     */
     public double summator() {
         double sum = 0;
         for (java.lang.Object t : super.Object
@@ -37,6 +53,10 @@ public class MathBox<T> extends ObjectBox{
         return sum;
     }
 
+    /**
+     * @param del параметр, на который делятся элементы коллекции
+     * @return возвращает измененную коллекцию
+     */
     public ArrayList<Double> splitter(T del) {
         ArrayList<Double> localhostOfInteger = new ArrayList<Double> ();
         for (java.lang.Object t : super.Object) {
@@ -47,6 +67,9 @@ public class MathBox<T> extends ObjectBox{
         return localhostOfInteger;
     }
 
+    /**
+     * @return воврат значения коллекции
+     */
     @Override
     public String toString() {
         return "MathBox [listOfInteger = " + super.Object + "]";
@@ -74,11 +97,18 @@ public class MathBox<T> extends ObjectBox{
         return flag;
     }
 
+    /**
+     * @return вовращает Хэш-код коллекции
+     */
     @Override
     public int hashCode() {
         return super.Object.hashCode ();
     }
 
+    /**
+     * Переопределяем метод добавлением проверки
+     * @param object параметр, который добавится в коллекцию
+     */
     @Override
     public void addObject(Object object){
         if (object instanceof Integer || object instanceof Float){
@@ -88,6 +118,10 @@ public class MathBox<T> extends ObjectBox{
         }
     }
 
+    /**
+     * Переопределяем метод добавлением проверки
+     * @param object параметр, который удалится из коллекции
+     */
     @Override
     public void deleteObject(Object object){
         boolean flag = false;
