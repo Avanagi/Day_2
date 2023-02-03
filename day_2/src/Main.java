@@ -8,7 +8,6 @@ public class Main {
         Integer[] vector = {1, 22, 10, 4, 5};
         Arrays.sort (vector);
         MathBox<Integer> mathbox = new MathBox<> (vector);
-        mathbox.deleteObject (3);
         mathbox.dump ();
     }
 }

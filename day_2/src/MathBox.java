@@ -62,6 +62,13 @@ public class MathBox<T> extends ObjectBox{
         for (java.lang.Object t : super.Object) {
             String s1 = del.toString (); double s2 = Double.parseDouble (s1);
             String s3 = t.toString (); double s4 = Double.parseDouble (s3);
+            double s;
+            try {
+               s = s4 / s2;
+            } catch (ArithmeticException e){
+                System.out.println("division by zero");
+                System.exit (0);
+            }
             localhostOfInteger.add (s4 / s2);
         }
         return localhostOfInteger;
