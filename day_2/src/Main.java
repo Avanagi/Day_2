@@ -9,12 +9,43 @@ public class Main {
         System.out.println ("Enter Size Of Array: ");
         int size;
         size = scanner.nextInt ();
-        Vector vector = new Vector (size);
-        vector.input ();
+        int [] vector = new int[size];
+        input(vector);
+
         MathBox mathbox = new MathBox (vector);
         System.out.println (mathbox.output ());
-        Set<MathBox> listOfInteger = new HashSet<> ();
-        listOfInteger.add (mathbox);
-        System.out.println (listOfInteger.hashCode ());
+
+        ObjectBox objectBox = new ObjectBox ();
+        objectBox.addObject (2);
+        objectBox.addObject ("gfd");
+        objectBox.deleteObject ("gfd");
+        objectBox.dump ();
+    }
+
+    public static void input(int[] vector){
+        Scanner scanner = new Scanner (System.in);
+        System.out.println ("Enter Your Array");
+        for (int i = 0; i < vector.length; i++) {
+            vector[i] = scanner.nextInt ();
+        }
+        if (!checkRepeats (vector)){
+            System.out.println ("Found Repeats In Vector, Try Again: ");
+            input (vector);
+        }
+    }
+
+    public static boolean checkRepeats(int[] vector) {
+        boolean flag = true;
+
+        for (int i = 0; i < vector.length; i++) {
+            for (int j = i + 1; j < vector.length; j++) {
+                if (vector[i] == vector[j]) {
+                    flag = false;
+                    break;
+                }
+            }
+        }
+
+        return flag;
     }
 }

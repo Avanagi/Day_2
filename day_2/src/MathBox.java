@@ -4,11 +4,11 @@ public class MathBox {
 
     private ArrayList<Integer> listOfInteger = new ArrayList<Integer> ();
 
-    MathBox(Vector vector){
+    MathBox(int[] vector){
         listOfInteger = new ArrayList<Integer> ();
-        QuickSortUtility.quickSort (vector, 0, vector.getSize () - 1);
-        for (int i = 0; i < vector.getSize (); i++) {
-            listOfInteger.add (vector.getElem (i));
+        QuickSortUtility.quickSort (vector, 0, vector.length - 1);
+        for (int i = 0; i < vector.length; i++) {
+            listOfInteger.add (vector[i]);
         }
     }
 
