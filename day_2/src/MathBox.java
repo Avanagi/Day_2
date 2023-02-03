@@ -1,22 +1,15 @@
 import java.util.*;
 
-public class MathBox<T> {
-
-    private ArrayList<T> listOfInteger = new ArrayList<T> ();
+public class MathBox<T> extends ObjectBox{
 
     MathBox(T[] vector) {
-        listOfInteger = new ArrayList<T> ();
-        //QuickSortUtility.quickSort (vector, 0, vector.length - 1);
-        listOfInteger.addAll (Arrays.asList (vector));
+
+        super.Object.addAll (Arrays.asList (vector));
         if (! checkRepeats (vector)) {
             System.out.println ("Found Repeats In Vector, Program Has Been Determinated ");
             System.exit (0);
         }
-        listOfInteger.sort (new Comparator<T> () {
-            public int compare(T o1, T o2) {
-                return o1.toString ().compareTo (o2.toString ());
-            }
-        });
+
     }
 
     public boolean checkRepeats(Object[] vector) {
@@ -34,13 +27,9 @@ public class MathBox<T> {
         return flag;
     }
 
-    public ArrayList<T> output() {
-        return listOfInteger;
-    }
-
     public double summator() {
         double sum = 0;
-        for (T t : listOfInteger
+        for (java.lang.Object t : super.Object
         ) {
             String s1 = t.toString (); double s2 = Double.parseDouble (s1);
             sum += s2;
@@ -50,7 +39,7 @@ public class MathBox<T> {
 
     public ArrayList<Double> splitter(T del) {
         ArrayList<Double> localhostOfInteger = new ArrayList<Double> ();
-        for (T t : listOfInteger) {
+        for (java.lang.Object t : super.Object) {
             String s1 = del.toString (); double s2 = Double.parseDouble (s1);
             String s3 = t.toString (); double s4 = Double.parseDouble (s3);
             localhostOfInteger.add (s4 / s2);
@@ -60,7 +49,7 @@ public class MathBox<T> {
 
     @Override
     public String toString() {
-        return "MathBox [listOfInteger = " + listOfInteger + "]";
+        return "MathBox [listOfInteger = " + super.Object + "]";
     }
 
     @Override
@@ -72,12 +61,12 @@ public class MathBox<T> {
             return false;
         }
         MathBox math = (MathBox) o;
-        if (listOfInteger.size () != math.listOfInteger.size ()) {
+        if (super.Object.size () != math.Object.size ()) {
             return false;
         }
         boolean flag = true;
-        for (int i = 0; i < listOfInteger.size (); i++) {
-            if (listOfInteger.get (i) != math.listOfInteger.get (i)) {
+        for (int i = 0; i < super.Object.size (); i++) {
+            if (super.Object.get (i) != math.Object.get (i)) {
                 flag = false;
                 break;
             }
@@ -87,14 +76,30 @@ public class MathBox<T> {
 
     @Override
     public int hashCode() {
-        return listOfInteger.hashCode ();
+        return super.Object.hashCode ();
     }
 
-    public void remove(T elem) {
-        for (int i = 0; i < listOfInteger.size (); i++) {
-            if (listOfInteger.get (i) == elem) {
-                listOfInteger.remove (i);
-            }
+    @Override
+    public void addObject(Object object){
+        if (object instanceof Integer || object instanceof Float){
+            super.Object.add (object);
+        } else {
+            System.out.println ("Unavailable To Add This Object " + object);
+        }
+    }
+
+    @Override
+    public void deleteObject(Object object){
+        boolean flag = false;
+        for (Object i: Object
+             ) {
+                if (object == i){
+                    super.Object.remove (object);
+                    flag = true;
+                }
+        }
+        if (!flag){
+            System.out.println ("Object " + object + " Is Not In List");
         }
     }
 }
