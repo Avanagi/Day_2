@@ -5,47 +5,27 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner (System.in);
-        System.out.println ("Enter Size Of Array: ");
-        int size;
-        size = scanner.nextInt ();
-        int [] vector = new int[size];
-        input(vector);
+        try {
+            Scanner scanner = new Scanner (System.in);
 
-        MathBox mathbox = new MathBox (vector);
-        System.out.println (mathbox.output ());
+            MathBox<Integer> mathbox = new MathBox<> (new Integer []{1, 2, 3, 4, 5});
+            MathBox<Integer> mathbox1 = new MathBox<> (new Integer []{1, 2, 3, 4, 5});
+            System.out.println (mathbox.equals (mathbox1));
+            System.out.println (mathbox1.hashCode ());
+            System.out.println (mathbox.summator ());
 
-        ObjectBox objectBox = new ObjectBox ();
-        objectBox.addObject (2);
-        objectBox.addObject ("gfd");
-        objectBox.deleteObject ("gfd");
-        objectBox.dump ();
-    }
+            Set ms = new HashSet ();
+            ms.add (mathbox);
+            System.out.println (ms.hashCode ());
 
-    public static void input(int[] vector){
-        Scanner scanner = new Scanner (System.in);
-        System.out.println ("Enter Your Array");
-        for (int i = 0; i < vector.length; i++) {
-            vector[i] = scanner.nextInt ();
+            ObjectBox objectBox = new ObjectBox ();
+            objectBox.addObject (2);
+            objectBox.addObject ("gfd");
+            objectBox.deleteObject ("gfd");
+            objectBox.dump ();
         }
-        if (!checkRepeats (vector)){
-            System.out.println ("Found Repeats In Vector, Try Again: ");
-            input (vector);
+        catch (Throwable e){
+            System.err.println (e);
         }
-    }
-
-    public static boolean checkRepeats(int[] vector) {
-        boolean flag = true;
-
-        for (int i = 0; i < vector.length; i++) {
-            for (int j = i + 1; j < vector.length; j++) {
-                if (vector[i] == vector[j]) {
-                    flag = false;
-                    break;
-                }
-            }
-        }
-
-        return flag;
     }
 }

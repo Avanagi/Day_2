@@ -1,7 +1,7 @@
 import java.util.*;
 public class ObjectBox {
 
-    private ArrayList<Object> Object = new ArrayList<Object> ();
+    private final ArrayList<Object> Object = new ArrayList<Object> ();
 
     public void addObject(Object object){
         Object.add (object);
