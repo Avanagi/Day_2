@@ -5,9 +5,10 @@ import java.util.Set;
 
 public class Main {
     public static void main (String[] args) {
-        Integer[] vector = {1, 22, 10, 4, 5};
-        Arrays.sort (vector);
+        Integer[] vector = {1, 2, 4};
         MathBox<Integer> mathbox = new MathBox<> (vector);
+        System.out.println (mathbox.splitter (2));
+        System.out.println (mathbox.summator ());
         mathbox.dump ();
     }
 }

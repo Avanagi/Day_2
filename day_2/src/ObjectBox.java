@@ -3,30 +3,52 @@ import java.util.*;
 /**
  * Описание класса ObjectBox
  */
-public class ObjectBox {
+public class ObjectBox{
 
-    ArrayList<Object> Object = new ArrayList<Object> ();
+    Collection<Object> storage;
+
+    public Collection<Object> getStorage(){
+        return storage;
+    }
 
     /**
      * Метод, добавляющий элемент в коллекцию
-     * @param object параметр, который добавится в коллекцию
+     * @param elem параметр, который добавится в коллекцию
      */
-    public void addObject(Object object){
-        Object.add (object);
+    boolean addObject(Object elem){
+        if (elem instanceof Integer || elem instanceof Float){
+            return this.getStorage().add (elem);
+        } else {
+            return false;
+        }
     }
 
     /**
      * Метод, удаляющий элемент из коллекции
-     * @param object параметр, который удалится из коллекции
+     * @param elem параметр, который удалится из коллекции
      */
-    public void deleteObject(Object object){
-        Object.remove (object);
+    boolean deleteObject(Object elem){
+        boolean flag = false;
+        for (Object i: storage
+        ) {
+            if (elem == i){
+                flag = true;
+                return this.getStorage ().remove (elem);
+            }
+        }
+        return false;
     }
 
     /**
      * Вывод коллекции
      */
     public void dump(){
-        System.out.println (Object.toString ());
+        String data = "Storage: ";
+        StringBuilder sb = new StringBuilder (data);
+        for (Object i:
+             storage) {
+            sb.append (i + " ");
+        }
+        System.out.println (sb);
     }
 }
