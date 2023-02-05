@@ -7,8 +7,11 @@ public class Main {
     public static void main(String[] args) {
         Integer[] vector = {1, 2, 4};
         MathBox<Integer> mathbox = new MathBox<>(vector);
-        System.out.println(mathbox.splitter(2));
-        System.out.println(mathbox.summator());
+        Integer[] vector2 = {1, 2, 4};
+        MathBox<Integer> mathbox2 = new MathBox<>(vector);
+        System.out.println(mathbox.equals(mathbox));
+        System.out.println(mathbox.uuid);
+        System.out.println(mathbox2.uuid);
         mathbox.dump();
     }
 }

@@ -6,6 +6,7 @@ import java.util.*;
 public class ObjectBox {
 
     Collection<Object> storage;
+    UUID uuid;
 
     public Collection<Object> getStorage() {
         return storage;
@@ -27,6 +28,36 @@ public class ObjectBox {
      */
     boolean deleteObject(Object elem) {
         return this.getStorage().remove(elem);
+    }
+
+    /**
+     * @param o объект, с которым сравнивается класс
+     * @return возвращает результат проверки
+     */
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) {
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        MathBox math = (MathBox) o;
+        if(uuid != math.uuid){
+            return false;
+        }
+        if(storage.size() != math.storage.size()) {
+            return false;
+        }
+        return storage.equals(math.storage);
+    }
+
+    /**
+     * @return вовращает Хэш-код коллекции
+     */
+    @Override
+    public int hashCode() {
+        return storage.hashCode();
     }
 
     /**

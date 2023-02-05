@@ -13,6 +13,7 @@ public class MathBox<T extends Number> extends ObjectBox {
      * @param vector вектор, элементы которого передаются в коллекцию
      */
     MathBox(T[] vector) {
+        uuid = UUID.randomUUID();
         super.storage = new TreeSet<>();
         Collections.addAll(super.storage, vector);
     }
@@ -54,33 +55,6 @@ public class MathBox<T extends Number> extends ObjectBox {
     }
 
     /**
-     * @param o объект, с которым сравнивается класс
-     * @return возвращает результат проверки
-     */
-    @Override
-    public boolean equals(Object o) {
-        if(this == o) {
-            return true;
-        }
-        if(o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MathBox math = (MathBox) o;
-        if(super.storage.size() != math.storage.size()) {
-            return false;
-        }
-        return super.storage.equals(math.storage);
-    }
-
-    /**
-     * @return вовращает Хэш-код коллекции
-     */
-    @Override
-    public int hashCode() {
-        return super.storage.hashCode();
-    }
-
-    /**
      * Переопределяем метод
      * @param elem параметр, который добавится в коллекцию
      * @return возавращаем результат вызова родительской функции
@@ -101,5 +75,6 @@ public class MathBox<T extends Number> extends ObjectBox {
         if(!(elem instanceof Number)) throw new IllegalArgumentException("Element is not Number");
         return super.deleteObject(elem);
     }
+
 
 }
