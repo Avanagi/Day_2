@@ -2,17 +2,19 @@ import java.util.*;
 
 /**
  * Инициализация коллекции
+ *
  * @param <T> Параметр, определяющий тип коллекции
  */
-public class MathBox<T extends Number> extends ObjectBox{
+public class MathBox<T extends Number> extends ObjectBox {
 
     /**
      * Конструктор по значению
+     *
      * @param vector вектор, элементы которого передаются в коллекцию
      */
     MathBox(T[] vector) {
-        super.storage = new TreeSet<> ();
-        Collections.addAll (super.storage, vector);
+        super.storage = new TreeSet<>();
+        Collections.addAll(super.storage, vector);
     }
 
     /**
@@ -20,11 +22,9 @@ public class MathBox<T extends Number> extends ObjectBox{
      */
     public double summator() {
         double sum = 0;
-        for (Object t : super.storage
+        for(Object t: super.storage
         ) {
-            String s1 = t.toString ();
-            double s2 = Double.parseDouble (s1);
-            sum += s2;
+            sum += Double.parseDouble(t.toString());
         }
         return sum;
     }
@@ -33,22 +33,16 @@ public class MathBox<T extends Number> extends ObjectBox{
      * @param div параметр, на который делятся элементы коллекции
      * @return возвращает измененную коллекцию
      */
-    public ArrayList<Double> splitter(T div) {
-        ArrayList<Double> localhostOfInteger = new ArrayList<Double> ();
-        for (Object t : storage) {
-            String s1 = div.toString ();
-            double s2 = Double.parseDouble (s1);
-            String s3 = t.toString ();
-            double s4 = Double.parseDouble (s3);
-            double s;
+    Collection<Double> splitter(T div) {
+        List<Double> splitList = new ArrayList<>();
+        for (Object x : this.storage) {
             try {
-               s = s4 / s2;
-            } catch (ArithmeticException e){
-                System.out.println("division by zero");
+                splitList.add(Double.parseDouble(x.toString()) / div.doubleValue());
+            }catch (NullPointerException e){
+                throw new NullPointerException(e.getMessage());
             }
-            localhostOfInteger.add (s4 / s2);
         }
-        return localhostOfInteger;
+        return splitList;
     }
 
     /**
@@ -65,17 +59,17 @@ public class MathBox<T extends Number> extends ObjectBox{
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if(this == o) {
             return true;
         }
-        if (o == null || getClass () != o.getClass ()) {
+        if(o == null || getClass() != o.getClass()) {
             return false;
         }
         MathBox math = (MathBox) o;
-        if (super.storage.size () != math.storage.size ()) {
+        if(super.storage.size() != math.storage.size()) {
             return false;
         }
-        return super.storage.equals (math.storage);
+        return super.storage.equals(math.storage);
     }
 
     /**
@@ -83,7 +77,29 @@ public class MathBox<T extends Number> extends ObjectBox{
      */
     @Override
     public int hashCode() {
-        return super.storage.hashCode ();
+        return super.storage.hashCode();
+    }
+
+    /**
+     * Переопределяем метод
+     * @param elem параметр, который добавится в коллекцию
+     * @return возавращаем результат вызова родительской функции
+     */
+    @Override
+    boolean addObject(Object elem) {
+        if(!(elem instanceof Number)) throw new IllegalArgumentException("Element is not Number");
+        return super.addObject(elem);
+    }
+
+    /**
+     * Переопределяем метод
+     * @param elem параметр, который удалится из коллекции
+     * @return возавращаем результат вызова родительской функции
+     */
+    @Override
+    boolean deleteObject(Object elem) {
+        if(!(elem instanceof Number)) throw new IllegalArgumentException("Element is not Number");
+        return super.deleteObject(elem);
     }
 
 }
